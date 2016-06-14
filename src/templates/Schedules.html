@@ -1,0 +1,52 @@
+
+<div class="col-md-6 col-md-offset-3" data-ng-init="init()">
+    <ol class="breadcrumb">
+      <li><a href="#/home">Home</a></li>
+      <li><a href="#/reserve">Rooms</a></li>
+      <li class="active">Schedule Appointment</li>
+    </ol>
+    <h4>Hello {{user.fullname}}</h4>
+
+    <div class="col-md-12">
+    <h4>Select a Reservation Date for Room {{rid}} <md-datepicker ng-model="myDate" md-placeholder="Enter date"
+        md-min-date="minDate" md-max-date="maxDate"></md-datepicker></h4>
+    <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="glyphicon glyphicon-calendar"></i> Schedules <span class="label label-info">Click on time to check availability</span></h3>
+          </div>
+          <div class="panel-body">
+            <span class="label label-primary" data-ng-click="checkAvailability('09:00 - 10:30')">09:00 - 10:30</span>
+            <span class="label label-primary" data-ng-click="checkAvailability('10:30 - 12:00')">10:30 - 12:00</span>
+            <span class="label label-primary" data-ng-click="checkAvailability('12:00 - 13:30')">12:00 - 13:30</span>
+            <span class="label label-primary" data-ng-click="checkAvailability('13:30 - 15:00')">13:30 - 15:00</span>
+            <span class="label label-primary" data-ng-click="checkAvailability('15:00 - 16:30')">15:00 - 16:30</span>
+            <span class="label label-primary" data-ng-click="checkAvailability('16:30 - 17:00')">16:30 - 17:00</span>  
+            <span class="label label-primary" data-ng-click="checkAvailability('17:00 - 18:30')">17:00 - 18:30</span>   
+            <span class="label label-primary" data-ng-click="checkAvailability('18:30 - 20:00')">18:30 - 20:00</span>      
+            <span class="label label-primary" data-ng-click="checkAvailability('20:00 - 21:30')">20:00 - 21:30</span>        
+          </div>
+    </div>
+    <p style="text-align:center" data-ng-show="loading"><img src="assets/loading.gif"></p>
+    <div class="panel panel-primary" data-ng-show="showDetails">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="glyphicon glyphicon-info-sign"></i> Room# {{rid}} - {{appdate}} - {{apptime}}</h3>
+          </div>
+          <div class="panel-body">
+            <div class="alert alert-danger" data-ng-show="notAvailable"><strong>Please select another slot!</strong></div>     
+            <div data-ng-show="availability">
+            <p class="label label-success">Selected slot is available.</p>
+            Would you like to reserve this slot? <button class="btn btn-primary" data-ng-click="reserveAppointment()">Reserve</button>
+            </div>
+          </div>
+    </div> 
+        
+    <div class="panel panel-primary" data-ng-show="appointmentConfirmation">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="glyphicon glyphicon-ok"></i> Confirmation</h3>
+          </div>
+          <div class="panel-body">
+            Your reservation has been scheduled and is awaiting approval. You can check the status in Dashboard.
+            </div>
+    </div>    
+    </div>
+</div>
